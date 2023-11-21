@@ -1,0 +1,286 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+
+
+
+/* background-image-gallery */
+.ImageGalleryMain{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.nav{
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 5px darkcyan solid;
+  background-color: lightgrey;
+}
+
+.option{
+  color:darkcyan;
+  font-size: 36px;
+  font-weight: bold;
+  background-color: lightgrey;
+  flex-grow: 1;
+  text-align: center;
+  border-right: 3px rgba(165, 165, 165) solid;
+  border-left: 3px rgba(165, 165, 165) solid;
+}
+.selectedOption{
+  color:darkcyan;
+  font-size: 36px;
+  font-weight: bold;
+  background-color:rgb(180, 180, 180);
+  flex-grow: 1;
+  text-align: center;
+    border-right: 3px rgba(165, 165, 165) solid;
+  border-left: 3px rgba(165, 165, 165) solid;
+}
+.option:hover{
+  background-color:rgb(195, 195, 195) ;
+  cursor: pointer;
+}
+.option:active{
+  background-color:rgb(215, 215, 215) ;
+}
+
+.mainContent{
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  justify-self: center;
+  justify-content: center;
+  left: 50%;
+  right: 50%
+}
+.mainContentItem{
+  list-style-type: none;
+  background-color: lightsteelblue;
+  width: 300px;
+  height: 300px;
+  border: 3px rgba(0, 0, 0, 0.5) solid;
+  margin: 30px;
+}
+.container{
+  justify-content: center;
+}
+.image{
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+
+/* MasterMind */
+.MasterMindRow{
+  display: flex;
+  align-items: center;
+  padding: 5px 20px;
+}
+.column{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.selectedRow{
+  background-color: rgba(32, 178, 171, 0.5);
+  box-shadow: 0 0 5px 3px  rgba(32, 178, 171, 0.5);
+  border-radius: 15px;
+}
+.board{
+  display: flex;
+  background-color: darkgray;
+  box-shadow: 0 0 5px black;
+  padding: 10px;
+  border-radius: 15px;
+}
+.MasterMindPiece{
+  width: 65px;
+  height: 65px;
+  background-color: gray;
+  margin: 5px;
+  border-radius: 50%;
+  box-shadow: 0 0 5px black;
+}
+
+.selectedPiece{
+  box-shadow: 0 0 5px 3px rgb(17, 5, 96)
+}
+.MasterMindPiece1{
+  background-color: red;
+}
+.MasterMindPiece2{
+  background-color: orange;
+}
+.MasterMindPiece3{
+  background-color: yellow;
+}
+.MasterMindPiece4{
+  background-color: green;
+}
+.MasterMindPiece5{
+  background-color: blue;
+}
+.MasterMindPiece6{
+  background-color: white;
+}
+
+.pin{
+  width: 15px;
+  height: 15px;
+  margin: 5px;
+  border-radius: 50%;
+  background-color: gray;
+  box-shadow: 0 0 5px black;
+}
+.pin1{
+  background-color: white;
+}
+.pin2{
+  background-color: red;
+}
+
+.selectColors{
+  justify-content: center;
+}
+.guessButton{
+  font-size: 24px;
+  margin: 15px;
+  padding: 5px 10px;
+  background-color: gray;
+  border: 2px darkgray solid;
+  color: darkgray;
+  border-radius: 15px;
+}
+.canGuess{
+  background-color: blue;
+  color: white;
+}
+.canGuess:hover{
+  cursor: pointer;
+  filter: brightness(95%)
+}
+.canGuess:active{
+  filter: brightness(105%)
+}
+
+
+.boardLeftContainer{
+  margin: 15px;
+}
+.MasterMindTitle{
+  background-color:rgba(0, 187, 177, 0.5);
+  border-radius: 15px;
+  padding: 5px 10px;
+  box-shadow: 0 0 5px 3px rgb(23, 126, 126);
+}
+.MasterMindWinMessage{
+  background-color:rgba(0, 187, 177, 0.5);
+  border-radius: 15px;
+  padding: 4px 4px;
+  box-shadow: 0 0 5px 3px rgba(0, 187, 177, 0.5);
+  margin: 15px;
+}
+
+
+
+/* checkers */
+.checkerBoardHtml{
+  display: flex;
+  flex-direction: column;
+}
+.row{
+  display: flex;
+}
+.blackSquare{
+  width: 70px;
+  height: 70px;
+  background-color: rgb(86, 47, 0);
+}
+.whiteSquare{
+  width: 70px;
+  height: 70px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 248, 206);
+}
+.checkerboard{
+  border: 5px black solid;
+  border-collapse: collapse;
+}
+
+.piece1{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: white;
+  border: 3px rgba(128, 128, 128, 0.3) dashed;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.piece2{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: black;
+  border: 3px rgba(128, 128, 128, 0.5) dashed;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ghostPiece{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: gray;
+  margin: auto;
+}
+.highlight{
+  background-color: yellow;
+}
+.selected{
+  background-color: blue;
+}
+.crown{
+  width: 20px;
+  height: 20px;
+  background-color: goldenrod;
+}
+.resetButton{
+  padding: 5px;
+  justify-self: center;
+  margin: 10px;
+  background-color: red;
+  color: white;
+  box-shadow: 0 0 5px lightcoral;
+  font-size: 24px;
+  font-weight: bold;
+}
+.resetButton:hover{
+  filter: brightness(95%);
+}
+.resetButton:active{
+  filter: brightness(105%);
+}
+.center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.title{
+  font-size: 48px;
+  text-shadow: 2px 2px 5px lightcoral;
+  color:darkred;
+  margin-bottom: 15px;
+}
