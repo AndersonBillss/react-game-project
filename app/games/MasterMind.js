@@ -1,6 +1,7 @@
 'use client'
+import BackgroundContext from '../BackgroundContext'
 import styles from '../page.module.css'
-import { useState, useRef } from 'react'
+import { useState, useRef, useContext } from 'react'
 
 export default function MasterMind() {
   const [selectedColor, setSelectedColor] = useState(1)
@@ -120,9 +121,11 @@ export default function MasterMind() {
     setSelectedRow(selectedRow+1)
   }
 
-
+  const {backgroundContextValue, updateBackgroundContextValue} = useContext(BackgroundContext)
   return(
-    <main className={styles.main}>
+    <main className={styles.main} style={{
+      backgroundImage: backgroundContextValue === null ? '' : `url(${backgroundContextValue})`
+    }}>
       <h1 className={styles.MasterMindTitle}>MasterMind</h1>
       <button
         className={`${styles.guessButton} ${canGuess || (results.current != false) ? styles.canGuess : ''}`}

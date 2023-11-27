@@ -1,6 +1,7 @@
 'use client'
+import BackgroundContext from '../BackgroundContext'
 import styles from '../page.module.css'
-import { useState, useEffect, useRef, useReducer, Fragment } from 'react'
+import { useState, useEffect, useRef, useReducer, Fragment, useContext } from 'react'
 
 const initialState = {
     jumpChain: false,
@@ -551,8 +552,11 @@ export default function Checkers(){
         )
     }
 
+    const {backgroundContextValue, updateBackgroundContextValue} = useContext(BackgroundContext)
     return(
-        <main className={styles.main}>
+        <main className={styles.main} style={{
+            backgroundImage: backgroundContextValue === null ? '' : `url(${backgroundContextValue})`
+        }}>
             <div className={styles.center}>
                 <h1 className={styles.title}>Checkers</h1>
                 <table className={`${styles.checkerboard} ${styles.checkersBorder}`}>
