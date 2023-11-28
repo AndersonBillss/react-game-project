@@ -64,17 +64,7 @@
 .gameOption:active{
   filter: brightness(105%)
 }
-.MasterMindOption{
-  background-color:rgb(78, 220, 213);
-  text-shadow: 2px 2px 5px rgb(23, 126, 126);
-  box-shadow: 0 0 5px 3px rgb(23, 126, 126);
-}
-.CheckersOption{
-  color: white;
-  text-shadow: 2px 2px 5px lightcoral;
-  background-color:darkred;
-  box-shadow: 0 0 5px 3px lightcoral;
-}
+
 
 .backButton{
   padding: 5px 10px;
@@ -88,6 +78,29 @@
   filter: brightness(105%)
 }
 
+.CheckersOption{
+  color: white;
+  text-shadow: 2px 2px 5px lightcoral;
+  background-color:darkred;
+  box-shadow: 0 0 5px 3px lightcoral;
+}
+.MasterMindOption{
+  background-color:rgb(78, 220, 213);
+  text-shadow: 2px 2px 5px rgb(23, 126, 126);
+  box-shadow: 0 0 5px 3px rgb(23, 126, 126);
+}
+.TriviaOption{
+  color: beige;
+  background-color: darkgreen;
+  box-shadow: 0 0 5px 3px rgb(0, 20, 0);
+}
+.titleContainer{
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  padding: 3px;
+  border-top: 3px black solid;
+}
 
 
 
@@ -394,6 +407,122 @@
 
 
 /* Trivia */
+.triviaQuestion{
+  margin: 15px 50px;
+  text-align: center;
+  background-color: beige;
+  padding: 5px 10px;
+  border-radius: 15px;
+  box-shadow: 0 0 5px 3px rgb(52, 46, 32);
+}
+.triviaType{
+  background-color: beige;
+  padding: 5px 10px;
+  border-radius: 15px;
+  box-shadow: 0 0 5px 3px rgb(52, 46, 32);
+}
+.triviaTitle{
+  font-size: 36px;
+  background-color:darkgreen;
+  color: beige;
+  border-radius: 15px;
+  padding: 7px 14px;
+  margin: 15px;
+}
+
+.triviaOptions{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.triviaTypeOption{
+  font-weight: bold;
+  font-size: 20px;
+  padding: 5px 10px;
+  margin: 5px;
+  background-color: lightgray;
+  border: 2px black solid;
+  border-radius: 5px;
+  text-align: center;
+}
+.triviaTypeOption:hover{
+  cursor: pointer;
+  filter: brightness(95%);
+}
+.triviaTypeOption:active{
+  filter: brightness(105%);
+}
+.triviaAnswerOption{
+  padding: 5px 10px;
+  margin: 5px;
+  background-color: lightgray;
+  border: 2px grey solid;
+  border-radius: 5px;
+  text-align: center;
+}
+.triviaAnswerOption:hover{
+  cursor: pointer;
+  filter: brightness(95%);
+}
+.triviaAnswerOption:active{
+  filter: brightness(105%);
+}
+.triviaButton{
+  font-size: 20px;
+  padding: 5px 10px;
+  margin: 15px;
+  background-color: lightgray;
+  border: 2px gray solid;
+}
+.triviaCanClick{
+  border: 2px darkgreen solid;
+  background-color: darkgreen;
+  color: beige;
+}
+.triviaCanClick:hover{
+  cursor: pointer;
+  filter: brightness(95%);
+}
+.triviaCanClick:active{
+  filter: brightness(105%);
+}
+
+.triviaSelected{
+  background-color: blue;
+  border: 2px darkblue solid;
+  box-shadow: 0 0 5px 3px darkblue;
+  color: beige
+}
+
 .triviaCorrect{
+  background-color: rgb(182, 255, 182);
+}
+.triviaIncorrect{
+  background-color: rgb(255, 179, 179);
+}
+.triviaSelectedCorrect{
   background-color: green;
+  border: 2px darkgreen solid;
+  box-shadow: 0 0 5px 3px darkgreen;
+  color: beige;
+}
+.triviaSelectedIncorrect{
+  background-color: red;
+  border: 2px darkred solid;
+  box-shadow: 0 0 5px 3px darkred;
+  color: beige;
+}
+.triviaBackButton{
+  font-size: 16px;
+  padding: 5px 10px;
+  background-color: red;
+  border:  2px darkred solid;
+  color: beige;
+}
+.triviaBackButton:hover{
+  cursor: pointer;
+  filter: brightness(95%);
+}
+.triviaBackButton:active{
+  filter: brightness(105%)
 }

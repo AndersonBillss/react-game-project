@@ -558,7 +558,9 @@ export default function Checkers(){
             backgroundImage: backgroundContextValue === null ? '' : `url(${backgroundContextValue})`
         }}>
             <div className={styles.center}>
-                <h1 className={styles.title}>Checkers</h1>
+                <div className={styles.titleContainer}>
+                    <h1 className={styles.title}>Checkers</h1>
+                </div>
                 <table className={`${styles.checkerboard} ${styles.checkersBorder}`}>
                     <tbody>
                         {state.board.map((row, rowIndex) => (

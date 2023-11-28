@@ -12,19 +12,20 @@ import BackgroundContext from './BackgroundContext'
 
 
 
-export default function test() {
+export function test() {
   return(
-    <Trivia />
+    <></>
   )
 }
 
-export function Home() {
+export default function Home() {
   const [loadedGame, setLoadedGame] = useState(null)
   const [backgroundImageSelect, setBackgroundImageSelect] = useState(false)
   const [backgroundContextValue, setBackgroundContextValue] = useState(null)
   const games = [
     {title: 'MasterMind', game: <MasterMind />},
-    {title: 'Checkers', game: <Checkers />}
+    {title: 'Checkers', game: <Checkers />},
+    {title: 'Trivia', game: <Trivia />},
   ]
 
   const updateBackgroundContextValue = (newBackground) => {
