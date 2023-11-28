@@ -5,13 +5,20 @@ import React, { useState, useContext } from 'react'
 
 import MasterMind from './games/MasterMind'
 import Checkers from './games/Checkers'
+import Trivia from './games/Trivia'
 
 import BackgroundImageGallery from './background-image-gallery'
 import BackgroundContext from './BackgroundContext'
 
 
 
-export default function Home() {
+export default function test() {
+  return(
+    <Trivia />
+  )
+}
+
+export function Home() {
   const [loadedGame, setLoadedGame] = useState(null)
   const [backgroundImageSelect, setBackgroundImageSelect] = useState(false)
   const [backgroundContextValue, setBackgroundContextValue] = useState(null)
