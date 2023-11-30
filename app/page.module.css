@@ -308,6 +308,9 @@
 
 
 /* checkers */
+.checkersWinMessage{
+  text-shadow: 0 0 10px white;
+}
 .checkerBoardHtml{
   display: flex;
   flex-direction: column;
@@ -525,4 +528,51 @@
 }
 .triviaBackButton:active{
   filter: brightness(105%)
+}
+
+
+/* Connect Four*/
+.connectFourBoard{
+  display: flex;
+  background-color: blue;
+  padding: 15px;
+  border-radius: 15px;
+  margin: 15px;
+}
+.connectFourTitle{
+  font-size: 45px;
+}
+.turn1{
+  box-shadow: 0 0 10px 5px red;
+}
+.turn2{
+  box-shadow: 0 0 10px 5px yellow;
+}
+.connectFourColumn{
+  display: flex;
+  flex-direction: column;
+}
+.connectFourRowHoverDarken:hover{
+  filter: brightness(80%);
+}
+
+.connectFourPiece{
+  width: 75px;
+  height: 75px;
+  margin: 3px 6px;
+  border-radius: 50%;
+  background-color: gray;
+  box-shadow: 0 0 5px black;
+}
+.connectFourPiece1{
+  background-color: red;
+}
+.connectFourPiece2{
+  background-color: yellow;
+}
+.connectFourWinPiece{
+  box-shadow: 0 0 5px 5px orange;
+}
+.connectFourShaded{
+  filter: brightness(50%);
 }

@@ -127,7 +127,7 @@ export default function MasterMind() {
       backgroundImage: backgroundContextValue === null ? '' : `url(${backgroundContextValue})`
     }}>
       <div className={styles.titleContainer}>
-        <h1 className={styles.MasterMindTitle}>MasterMind</h1>
+      <h1 className={styles.MasterMindTitle}>MasterMind</h1>
       </div>
       <button
         className={`${styles.guessButton} ${canGuess || (results.current != false) ? styles.canGuess : ''}`}

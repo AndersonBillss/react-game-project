@@ -605,7 +605,7 @@ export default function Checkers(){
             :
             (
                 <div className={styles.center}>
-                    <h1>{winningPlayer === 'tie' ? "It's a tie" : `${winningPlayer} wins`}</h1>
+                    <h1 className={styles.checkersWinMessage}>{winningPlayer === 'tie' ? "It's a tie" : `${winningPlayer} wins`}</h1>
                     <button className={styles.resetButton} onClick={() => dispatch({ type: 'RESETBOARD' })}>New Game</button>
                 </div>
             )}

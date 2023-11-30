@@ -6,6 +6,7 @@ import React, { useState, useContext } from 'react'
 import MasterMind from './games/MasterMind'
 import Checkers from './games/Checkers'
 import Trivia from './games/Trivia'
+import ConnectFour from './games/ConnectFour'
 
 import BackgroundImageGallery from './background-image-gallery'
 import BackgroundContext from './BackgroundContext'
@@ -14,7 +15,7 @@ import BackgroundContext from './BackgroundContext'
 
 export function test() {
   return(
-    <></>
+    <><ConnectFour /></>
   )
 }
 
@@ -26,6 +27,7 @@ export default function Home() {
     {title: 'MasterMind', game: <MasterMind />},
     {title: 'Checkers', game: <Checkers />},
     {title: 'Trivia', game: <Trivia />},
+    {title: 'Connect Four', game: <ConnectFour />},
   ]
 
   const updateBackgroundContextValue = (newBackground) => {
