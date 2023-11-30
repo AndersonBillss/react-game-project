@@ -11,7 +11,31 @@
   background-repeat: no-repeat;
 
 }
+
+
+.resetButton{
+  padding: 5px;
+  justify-self: center;
+  margin: 10px;
+  background-color: red;
+  color: white;
+  box-shadow: 0 0 5px lightcoral;
+  font-size: 24px;
+  font-weight: bold;
+}
+.resetButton:hover{
+  filter: brightness(95%);
+}
+.resetButton:active{
+  filter: brightness(105%);
+}
+.center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 /* HomePage */
+
 .backgroundSelectButton{
   padding: 5px 10px;
   font-weight: bold;
@@ -21,11 +45,12 @@
 .backgroundSelectButton:hover{
   filter: brightness(95%);
 }
+
 .mainTitleContainer{
   display: flex;
   color: white;
   background-color: rgb(62, 107, 108);
-  box-shadow: 0 0 5px 3px rgb(0, 79, 79);
+  box-shadow: 0 5px 5px 0 rgb(0, 79, 79);
   text-shadow: 0 0 5px rgb(200, 200, 200);
   font-size: 24px;
   padding: 15px;
@@ -78,21 +103,27 @@
   filter: brightness(105%)
 }
 
-.CheckersOption{
+.checkersOption{
   color: white;
   text-shadow: 2px 2px 5px lightcoral;
   background-color:darkred;
   box-shadow: 0 0 5px 3px lightcoral;
 }
-.MasterMindOption{
+.masterMindOption{
   background-color:rgb(78, 220, 213);
   text-shadow: 2px 2px 5px rgb(23, 126, 126);
   box-shadow: 0 0 5px 3px rgb(23, 126, 126);
 }
-.TriviaOption{
+.triviaOption{
   color: beige;
   background-color: darkgreen;
   box-shadow: 0 0 5px 3px rgb(0, 20, 0);
+}
+.connectFourOption{
+  background-color: blue;
+  color: white;
+  text-shadow: 2px 2px 5px gray;
+  box-shadow: 0 0 5px 3px darkblue;
 }
 .titleContainer{
   display: flex;
@@ -375,27 +406,7 @@
   height: 20px;
   background-color: goldenrod;
 }
-.resetButton{
-  padding: 5px;
-  justify-self: center;
-  margin: 10px;
-  background-color: red;
-  color: white;
-  box-shadow: 0 0 5px lightcoral;
-  font-size: 24px;
-  font-weight: bold;
-}
-.resetButton:hover{
-  filter: brightness(95%);
-}
-.resetButton:active{
-  filter: brightness(105%);
-}
-.center{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+
 .title{
   margin: 15px;
   font-size: 48px;
@@ -540,7 +551,14 @@
   margin: 15px;
 }
 .connectFourTitle{
-  font-size: 45px;
+  font-size: 36px;
+  margin: 15px;
+  padding: 5px 10px;
+  border-radius: 15px;
+  background-color: blue;
+  color: white;
+  text-shadow: 2px 2px 5px gray;
+  box-shadow: 0 0 5px 3px darkblue;
 }
 .turn1{
   box-shadow: 0 0 10px 5px red;

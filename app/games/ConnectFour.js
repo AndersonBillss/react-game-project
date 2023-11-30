@@ -1,7 +1,7 @@
 'use client'
 import BackgroundContext from '../BackgroundContext'
 import styles from '../page.module.css'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 
 export default function ConnectFour(){
     const [board, setBoard] = useState(
@@ -15,57 +15,9 @@ export default function ConnectFour(){
             [0,0,0,0,0,0],
         ])
     const [turn, setTurn] = useState(1)
+    const [win, setWin] = useState(null)
+    const [winPieces, setWinPieces] = useState([])
 
-    const winConditions = [
-        [[0,0],[0,1],[0,2],[0,3]],
-        [[0,0],[1,0],[2,0],[3,0]],
-        [[0,0],[1,1],[2,2],[3,3]],
-        [[0,3],[1,2],[2,1],[3,0]],
-    ]
-    let win = null
-    let winPieces = []
-    for(let i=0; i<board.length; i++){
-        for(let j=0; j<board[i].length; j++){
-            //each spot tested for each condition
-            winConditions.forEach((condition) => {
-                if(!win){
-                    let canTest = true
-                    //check if the conditions go out of bounds
-                    condition.forEach((coord) => {
-                        if(i+coord[0]>=board.length || j+coord[1]>=board[i].length){
-                            canTest = false
-                        }
-                    })
-                    if(canTest){
-                        let piece = board[i+condition[0][0]][j+condition[0][1]]
-                        if(piece != 0){
-                            win = true
-                            //if any piece doesn't line up with the condition, set win to null
-                            condition.forEach((coord, index) => {
-                                winPieces[index] = [i+coord[0],j+coord[1]]
-                                if(board[i+coord[0]][j+coord[1]] != piece){
-                                    win = null
-                                    winPieces = []
-                                }
-                            })
-                        }
-    
-                    }
-                }
-            })
-
-        }
-    }
-    if(win){
-        console.log(winPieces)
-        if(turn == 1){
-            win = 'Yellow'
-        } else {
-            win = 'Red'
-        }
-    } else {
-        winPieces = []
-    }
 
 
     const gameReset = () => {
@@ -83,6 +35,8 @@ export default function ConnectFour(){
         } else {
             setTurn(1)
         }
+        setWin(null)
+        setWinPieces([])
     }
 
     const placePiece = (columnIndex) => {
@@ -96,19 +50,74 @@ export default function ConnectFour(){
                 break
             }
         }
-        if(turn == 1){
-            setTurn(2)
+
+    const winConditions = [
+        [[0,0],[0,1],[0,2],[0,3]],
+        [[0,0],[1,0],[2,0],[3,0]],
+        [[0,0],[1,1],[2,2],[3,3]],
+        [[0,3],[1,2],[2,1],[3,0]],
+    ]
+        let winCheck = null
+        let winCheckPieces = []
+        for(let i=0; i<board.length; i++){
+            for(let j=0; j<board[i].length; j++){
+                //each spot tested for each condition
+                winConditions.forEach((condition) => {
+                    if(!winCheck){
+                        let canTest = true
+                        //check if the conditions go out of bounds
+                        condition.forEach((coord) => {
+                            if(i+coord[0]>=board.length || j+coord[1]>=board[i].length){
+                                canTest = false
+                            }
+                        })
+                        if(canTest){
+                            let piece = board[i+condition[0][0]][j+condition[0][1]]
+                            if(piece != 0){
+                                winCheck = true
+                                //if any piece doesn't line up with the condition, set winCheck to null
+                                condition.forEach((coord, index) => {
+                                    winCheckPieces[index] = [i+coord[0],j+coord[1]]
+                                    if(board[i+coord[0]][j+coord[1]] != piece){
+                                        winCheck = null
+                                        winCheckPieces = []
+                                    }
+                                })
+                            }
+        
+                        }
+                    }
+                })
+    
+            }
+        }
+        if(winCheck){
+            if(turn == 1){
+                winCheck = 'Red'
+            } else {
+                winCheck = 'Yellow'
+            }
         } else {
+            winCheckPieces = []
+        }
+
+        setWin(winCheck)
+        setWinPieces(winCheckPieces)
+
+        if(turn == 1 && winCheck == null){
+            setTurn(2)
+        } else  if (winCheck == null){
             setTurn(1)
         }
         setBoard(newBoard) 
     }
 
 
-
-
+    const {backgroundContextValue, updateBackgroundContextValue} = useContext(BackgroundContext)
     return(
-        <main className={styles.main}>
+        <main className={styles.main} style={{
+            backgroundImage: backgroundContextValue === null ? '' : `url(${backgroundContextValue})`
+          }}>
             <div className={styles.titleContainer}>
                 <h1 className={styles.connectFourTitle}>Connect Four</h1>
             </div>
@@ -133,7 +142,7 @@ export default function ConnectFour(){
             </div>
             {win!=null?<h1>{win} Wins!</h1>:''}
             <button 
-            className={`${styles.center} ${styles.backButton}`}
+            className={`${styles.center} ${styles.resetButton}`}
             onClick={() => gameReset()}
             >Reset Game</button>
         </main>

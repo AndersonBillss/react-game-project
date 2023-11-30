@@ -24,10 +24,10 @@ export default function Home() {
   const [backgroundImageSelect, setBackgroundImageSelect] = useState(false)
   const [backgroundContextValue, setBackgroundContextValue] = useState(null)
   const games = [
-    {title: 'MasterMind', game: <MasterMind />},
-    {title: 'Checkers', game: <Checkers />},
-    {title: 'Trivia', game: <Trivia />},
-    {title: 'Connect Four', game: <ConnectFour />},
+    {title: 'MasterMind', styleName: 'masterMind', game: <MasterMind />},
+    {title: 'Checkers', styleName: 'checkers', game: <Checkers />},
+    {title: 'Trivia', styleName: 'trivia', game: <Trivia />},
+    {title: 'Connect Four', styleName: 'connectFour', game: <ConnectFour />},
   ]
 
   const updateBackgroundContextValue = (newBackground) => {
@@ -42,30 +42,32 @@ export default function Home() {
 
   const HomePage = () => {
     return(
-      <main className={styles.main} style={{
-        backgroundImage: backgroundContextValue === null ? '' : `url(${backgroundContextValue})`
-    }}>
-        <div className={`${styles.mainTitleContainer} ${styles.column}`}>
-          <div>
-            <h1 className={styles.mainTitle}>Games</h1>
+      <>
+        <main className={styles.main} style={{
+          backgroundImage: backgroundContextValue === null ? '' : `url(${backgroundContextValue})`
+        }}>
+          <div className={`${styles.mainTitleContainer} ${styles.column}`}>
+            <div>
+              <h1 className={styles.mainTitle}>Games</h1>
+            </div>
+            <div className={styles.mainNav}>
+              <button
+              className={styles.backgroundSelectButton}
+              onClick={() => setBackgroundImageSelect(true)}
+              >select background</button>
+            </div>
           </div>
-          <div className={styles.mainNav}>
-            <button
-            className={styles.backgroundSelectButton}
-            onClick={() => setBackgroundImageSelect(true)}
-            >select background</button>
-          </div>
-        </div>
-        <ul className={styles.gameOptionList}>
-          {games.map((game, index) => (
-            <li
-            key={index}
-            onClick={() => loadGame(index)}
-            className={`${styles.gameOption} ${styles[`${game.title}Option`]}`}
-            >{game.title}</li>
-          ))}
-        </ul>
-      </main>
+          <ul className={styles.gameOptionList}>
+            {games.map((game, index) => (
+              <li
+              key={index}
+              onClick={() => loadGame(index)}
+              className={`${styles.gameOption} ${styles[`${game.styleName}Option`]}`}
+              >{game.title}</li>
+            ))}
+          </ul>
+        </main>
+      </>
     )
   }
 
