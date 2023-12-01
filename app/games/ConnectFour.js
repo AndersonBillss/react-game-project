@@ -140,7 +140,7 @@ export default function ConnectFour(){
                     </div>
                 ))}
             </div>
-            {win!=null?<h1>{win} Wins!</h1>:''}
+            {win!=null?<h1 className={styles.connectFourWin}>{win} Wins!</h1>:''}
             <button 
             className={`${styles.center} ${styles.resetButton}`}
             onClick={() => gameReset()}

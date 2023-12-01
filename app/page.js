@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import styles from './page.module.css'
 import React, { useState, useContext } from 'react'
+import Head from 'next/head'
 
 import MasterMind from './games/MasterMind'
 import Checkers from './games/Checkers'
@@ -19,7 +20,8 @@ export function test() {
   )
 }
 
-export default function Home() {
+
+export function App() {
   const [loadedGame, setLoadedGame] = useState(null)
   const [backgroundImageSelect, setBackgroundImageSelect] = useState(false)
   const [backgroundContextValue, setBackgroundContextValue] = useState(null)
@@ -30,13 +32,14 @@ export default function Home() {
     {title: 'Connect Four', styleName: 'connectFour', game: <ConnectFour />},
   ]
 
+
   const updateBackgroundContextValue = (newBackground) => {
     setBackgroundContextValue(newBackground)
   }
 
 
   const loadGame = (index) => {
-    setLoadedGame(games[index].game)
+    setLoadedGame(games[index])
   }
 
 
@@ -70,9 +73,9 @@ export default function Home() {
       </>
     )
   }
-
   return (
     <BackgroundContext.Provider value={{ backgroundContextValue, updateBackgroundContextValue }}>
+
       {backgroundImageSelect ? (
       <div className={styles.center}>
         <button onClick={() => {setLoadedGame(null); setBackgroundImageSelect(false)}} className={styles.backButton}>Home</button>
@@ -84,13 +87,13 @@ export default function Home() {
       ) : (
       <div className={styles.center}>
         <button onClick={() => {setLoadedGame(null); setBackgroundImageSelect(false)}} className={styles.backButton}>Home</button>
-        {loadedGame}
+        {loadedGame.game}
       </div> 
       )
       )
       }
-
-      
     </BackgroundContext.Provider>
   )
 }
+
+export default App

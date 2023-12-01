@@ -106,7 +106,7 @@ export default function Trivia() {
                     dangerouslySetInnerHTML={{ __html: currentQuestion.question }}></h3>
                     <ul>
                         {currentQuestion.answers.map((answer, index) => (
-                            <option 
+                            <p 
                             key={index} 
                             value={index} 
                             onClick={!answerChecked ? () => {setSelectedAnswer(index)} : () => {}}
@@ -116,7 +116,7 @@ export default function Trivia() {
                             ${answerChecked ? (answer.correct ? styles.triviaCorrect : styles.triviaIncorrect) : ''}
                             `}
                             dangerouslySetInnerHTML={{ __html: answer.text }}
-                            ></option>
+                            ></p>
                         ))}
                     </ul>
 

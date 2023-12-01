@@ -49,8 +49,8 @@
 .mainTitleContainer{
   display: flex;
   color: white;
-  background-color: rgb(62, 107, 108);
-  box-shadow: 0 5px 5px 0 rgb(0, 79, 79);
+  background-color: lightgray;
+  box-shadow: 0 5px 5px 0 darkcyan;
   text-shadow: 0 0 5px rgb(200, 200, 200);
   font-size: 24px;
   padding: 15px;
@@ -221,7 +221,44 @@
   height: 100%;
 }
 
-
+@media (max-width: 730px) {
+  .mainContentItem{
+    width: 75vw;
+    height: 75vw;
+    margin: 15px;
+  }
+}
+@media (max-width: 650px) {
+  .nav{
+    flex-wrap: wrap;
+  }
+  .mainContentItem{
+    width: 80vw;
+    height: 80vw;
+    margin: 10px;
+  }
+  .option{
+    font-size: 24px;
+    border: 2px rgba(165, 165, 165) solid;
+  }
+  .selectedOption{
+    font-size: 24px;
+    border: 2px rgba(165, 165, 165) solid;
+  }
+}
+@media (max-width: 300px){
+.mainContentItem{
+  width: 75vw;
+  height: 75vw;
+  margin: 5px;
+}
+.option{
+  font-size: 20px;
+}
+.selectedOption{
+  font-size: 20px;
+}
+}
 
 
 /* MasterMind */
@@ -335,6 +372,49 @@
   box-shadow: 0 0 5px 3px rgba(0, 187, 177, 0.5);
   margin: 15px;
 }
+@media (max-width: 550px) {
+  .MasterMindPiece{
+    width: 50px;
+    height: 50px;
+  }
+  .pin{
+    width: 12px;
+    height: 12px;
+  }
+  .board{
+    padding: 5px;
+  }
+}
+@media (max-width: 450px){
+  .MasterMindPiece{
+    width: 40px;
+    height: 40px;
+  }
+  .pin{
+    width: 10px;
+    height: 10px;
+  }
+  .board{
+    padding: 0;
+  }
+  .MasterMindRow{
+    padding: 5px
+  }
+}
+@media (max-width: 350px){
+  .MasterMindPiece{
+    width: 30px;
+    height: 30px;
+  }
+  .pin{
+    width: 8px;
+    height: 8px;
+  }
+  .MasterMindRow{
+    padding: 0
+  }
+}
+
 
 
 
@@ -418,6 +498,28 @@
   box-shadow: 0 0 5px 3px rgba(255, 255, 255, 0.3);
   margin-bottom: 15px;
 }
+@media(max-width: 600px){
+  .whiteSquare{
+    width: 12vw;
+    height: 12vw;
+  }
+  .blackSquare{
+    width: 12vw;
+    height: 12vw;
+  }
+  .ghostPiece{
+    width: 9vw;
+    height: 9vw;
+  }
+  .piece1{
+    width: 9vw;
+    height: 9vw;
+  }
+  .piece2{
+    width: 9vw;
+    height: 9vw;
+  }
+}
 
 
 /* Trivia */
@@ -473,6 +575,7 @@
   border: 2px grey solid;
   border-radius: 5px;
   text-align: center;
+  flex-wrap: wrap;
 }
 .triviaAnswerOption:hover{
   cursor: pointer;
@@ -540,6 +643,11 @@
 .triviaBackButton:active{
   filter: brightness(105%)
 }
+@media(max-width: 400px){
+  .triviaQuestion{
+    margin: 15px 15px;
+  }
+}
 
 
 /* Connect Four*/
@@ -559,6 +667,7 @@
   color: white;
   text-shadow: 2px 2px 5px gray;
   box-shadow: 0 0 5px 3px darkblue;
+  text-align: center;
 }
 .turn1{
   box-shadow: 0 0 10px 5px red;
@@ -593,4 +702,22 @@
 }
 .connectFourShaded{
   filter: brightness(50%);
+}
+.connectFourWin{
+  background-color: orange;
+  border-radius: 5px;
+  padding: 5px 10px;
+  box-shadow: 0 2px 5px black;
+  margin: 15px;
+  color: white;
+}
+@media(max-width: 700px){
+  .connectFourPiece{
+    width: 9vw;
+    height: 9vw;
+    margin: .5vw, .7vw
+  }
+  .connectFourBoard{
+    padding: 2vw;
+  }
 }
