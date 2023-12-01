@@ -68,13 +68,13 @@ export default function BackgroundImageGallery() {
   function NavOption(index) {
     const isSelected = state.selectedOptionIndex === index;
     return (
-      <option
+      <div
         key={index}
         className={isSelected ? styles.selectedOption : styles.option}
         onClick={() => dispatch({ type: 'SWITCHTABS', key: index})}
       >
         {state.optionsArray[index].title}
-      </option>
+      </div>
     );
   }
 

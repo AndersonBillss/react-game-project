@@ -91,11 +91,11 @@ export default function Trivia() {
                 {currentQuestionType.type == '' ?
                 <>
                     {triviaOptions.map((option, index) => (
-                        <option 
+                        <div 
                         onClick={() => selectQuestionType(index)} 
                         key={index}
                         className={`${styles.triviaTypeOption}`}
-                        >{option.type}</option>
+                        >{option.type}</div>
                     ))}
                 </>
                 :
