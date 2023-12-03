@@ -101,7 +101,6 @@ export function App() {
 
   return (
     <BackgroundContext.Provider value={{ backgroundContextValue, updateBackgroundContextValue }}>
-      <button onClick={() => localStorage.clear()}>Clear local storage</button>
       {backgroundImageSelect ? (
       <div className={styles.center}>
         <button onClick={() => {setLoadedGame(null); setBackgroundImageSelect(false)}} className={styles.backButton}>Home</button>
