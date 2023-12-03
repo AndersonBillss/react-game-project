@@ -3,65 +3,70 @@ import BackgroundContext from '../BackgroundContext'
 import styles from '../page.module.css'
 import { useState, useEffect, useRef, useReducer, Fragment, useContext } from 'react'
 
-const initialState = {
-    jumpChain: false,
-    jumpChainStopper: true,
-    switchPlayerStopper: false,
-    selectedPieceRowIndex: null,
-    selectedPieceColumnIndex: null,
-    turn: 'player1',
-    board: 
-    [
+let saveInitialState 
+try {
+    saveInitialState = JSON.parse(localStorage.getItem('checkersState')) || {
+        jumpChain: false,
+        jumpChainStopper: true,
+        switchPlayerStopper: false,
+        selectedPieceRowIndex: null,
+        selectedPieceColumnIndex: null,
+        turn: 'player1',
+        board: 
         [
-            {player: 1, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
-            {player: 1, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
-            {player: 1, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
-            {player: 1, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false}
-        ],
-        [
-            {player: 1, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
-            {player: 1, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
-            {player: 1, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
-            {player: 1, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false}
-        ],
-        [
-            {player: 1, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
-            {player: 1, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
-            {player: 1, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
-            {player: 1, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false}
-        ],
-        [
-            {player: 0, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
-            {player: 0, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
-            {player: 0, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
-            {player: 0, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false}
-        ],
-        [
-            {player: 0, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
-            {player: 0, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
-            {player: 0, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
-            {player: 0, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false}
-        ],
-        [
-            {player: 2, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
-            {player: 2, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
-            {player: 2, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
-            {player: 2, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false}
-        ],
-        [
-            {player: 2, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
-            {player: 2, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
-            {player: 2, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
-            {player: 2, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false}
-        ],
-        [
-            {player: 2, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
-            {player: 2, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
-            {player: 2, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
-            {player: 2, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false}
-        ],
-    ]
-}
+            [
+                {player: 1, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
+                {player: 1, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
+                {player: 1, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
+                {player: 1, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false}
+            ],
+            [
+                {player: 1, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
+                {player: 1, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
+                {player: 1, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
+                {player: 1, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false}
+            ],
+            [
+                {player: 1, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
+                {player: 1, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
+                {player: 1, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
+                {player: 1, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false}
+            ],
+            [
+                {player: 0, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
+                {player: 0, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
+                {player: 0, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
+                {player: 0, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false}
+            ],
+            [
+                {player: 0, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
+                {player: 0, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
+                {player: 0, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
+                {player: 0, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false}
+            ],
+            [
+                {player: 2, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
+                {player: 2, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
+                {player: 2, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
+                {player: 2, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false}
+            ],
+            [
+                {player: 2, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
+                {player: 2, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
+                {player: 2, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
+                {player: 2, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false}
+            ],
+            [
+                {player: 2, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
+                {player: 2, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
+                {player: 2, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false},
+                {player: 2, type: {king: false, ghost: false}, move: {canMove: false, moves: []}, selected: false}
+            ],
+        ]
+    }
+  } catch (error) {}
+
+const initialState = saveInitialState
 
 const checkersReducer = (state, action) => {
     switch(action.type){
@@ -551,6 +556,12 @@ export default function Checkers(){
             </td>
         )
     }
+    
+  useEffect(() => {
+    try {
+        localStorage.setItem('checkersState', JSON.stringify(state))
+    } catch (error) {}
+  })
 
     const {backgroundContextValue, updateBackgroundContextValue} = useContext(BackgroundContext)
     return(

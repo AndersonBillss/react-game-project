@@ -1,11 +1,16 @@
 'use client'
 import BackgroundContext from '../BackgroundContext'
 import styles from '../page.module.css'
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 
 export default function ConnectFour(){
-    const [board, setBoard] = useState(
-        [
+
+    let savedBoard
+    let savedTurn
+    let savedWin
+    let savedWinPieces
+    try {
+        savedBoard = JSON.parse(localStorage.getItem('connectFourBoard')) ||         [
             [0,0,0,0,0,0],
             [0,0,0,0,0,0],
             [0,0,0,0,0,0],
@@ -13,10 +18,15 @@ export default function ConnectFour(){
             [0,0,0,0,0,0],
             [0,0,0,0,0,0],
             [0,0,0,0,0,0],
-        ])
-    const [turn, setTurn] = useState(1)
-    const [win, setWin] = useState(null)
-    const [winPieces, setWinPieces] = useState([])
+        ]
+        savedTurn = JSON.parse(localStorage.getItem('connectFourTurn')) || 1
+        savedWin = JSON.parse(localStorage.getItem('connectFourWin')) || null
+        savedWinPieces = JSON.parse(localStorage.getItem('connectFourWinPieces')) || []
+    } catch (error) {}
+    const [board, setBoard] = useState(savedBoard)
+    const [turn, setTurn] = useState(savedTurn)
+    const [win, setWin] = useState(savedWin)
+    const [winPieces, setWinPieces] = useState(savedWinPieces)
 
 
 
@@ -112,6 +122,15 @@ export default function ConnectFour(){
         setBoard(newBoard) 
     }
 
+
+    useEffect(() => {
+        try {
+            localStorage.setItem('connectFourBoard', JSON.stringify(board))
+            localStorage.setItem('connectFourTurn', JSON.stringify(turn))
+            localStorage.setItem('connectFourWin', JSON.stringify(win))
+            localStorage.setItem('connectFourWinPieces', JSON.stringify(winPieces))
+        } catch (error) {}
+      })
 
     const {backgroundContextValue, updateBackgroundContextValue} = useContext(BackgroundContext)
     return(

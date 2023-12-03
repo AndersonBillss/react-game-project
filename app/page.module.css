@@ -536,6 +536,7 @@
   padding: 5px 10px;
   border-radius: 15px;
   box-shadow: 0 0 5px 3px rgb(52, 46, 32);
+  color: black;
 }
 .triviaTitle{
   font-size: 36px;
@@ -560,6 +561,7 @@
   border: 2px black solid;
   border-radius: 5px;
   text-align: center;
+  color: black;
 }
 .triviaTypeOption:hover{
   cursor: pointer;
@@ -576,6 +578,7 @@
   border-radius: 5px;
   text-align: center;
   flex-wrap: wrap;
+  color: black;
 }
 .triviaAnswerOption:hover{
   cursor: pointer;

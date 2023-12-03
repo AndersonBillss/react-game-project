@@ -1,13 +1,16 @@
 'use client'
 import BackgroundContext from '../BackgroundContext'
 import styles from '../page.module.css'
-import { useState, useRef, useContext } from 'react'
+import { useState, useRef, useContext, useEffect } from 'react'
 
 export default function MasterMind() {
-  const [selectedColor, setSelectedColor] = useState(1)
-  const [selectedRow, setSelectedRow] = useState(0)
-  const [board, setBoard] = useState(
-    [
+  let savedRow
+  let savedBoard
+  let savedCode
+  let savedResults
+  try {
+    savedRow = Number(localStorage.getItem('masterMindSelectedRow')) || 0
+    savedBoard = JSON.parse(localStorage.getItem('masterMindGameBoard')) || [
       {pieces: [0,0,0,0], pins: [0,0,0,0]},
       {pieces: [0,0,0,0], pins: [0,0,0,0]},
       {pieces: [0,0,0,0], pins: [0,0,0,0]},
@@ -15,14 +18,24 @@ export default function MasterMind() {
       {pieces: [0,0,0,0], pins: [0,0,0,0]},
       {pieces: [0,0,0,0], pins: [0,0,0,0]},
     ]
-  )
-  const [secretCode, setSecretCode] = useState([
-    (Math.floor(Math.random()*6)+1),
-    (Math.floor(Math.random()*6)+1),
-    (Math.floor(Math.random()*6)+1),
-    (Math.floor(Math.random()*6)+1)
-  ])
-  const results = useRef(false)
+    savedCode = JSON.parse(localStorage.getItem('masterMindSecretCode')) || [
+      (Math.floor(Math.random()*6)+1),
+      (Math.floor(Math.random()*6)+1),
+      (Math.floor(Math.random()*6)+1),
+      (Math.floor(Math.random()*6)+1),
+    ]
+    savedResults = JSON.parse(localStorage.getItem('masterMindResults')) || false
+  } catch (error) {
+  }
+
+  const [selectedColor, setSelectedColor] = useState(0)
+  const [selectedRow, setSelectedRow] = useState(savedRow)
+  const [board, setBoard] = useState(savedBoard)
+  const [secretCode, setSecretCode] = useState(savedCode)
+  const results = useRef(savedResults)
+
+
+
 
   if(selectedRow >= board.length && !results.current){
     results.current = 'lose'
@@ -120,6 +133,15 @@ export default function MasterMind() {
     setBoard(newBoard)
     setSelectedRow(selectedRow+1)
   }
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('masterMindGameBoard', JSON.stringify(board))
+      localStorage.setItem('masterMindSelectedRow', selectedRow)
+      localStorage.setItem('masterMindSecretCode', JSON.stringify(secretCode))
+      localStorage.setItem('masterMindResults', JSON.stringify(results.current))
+    } catch (error) {}
+  })
 
   const {backgroundContextValue, updateBackgroundContextValue} = useContext(BackgroundContext)
   return(

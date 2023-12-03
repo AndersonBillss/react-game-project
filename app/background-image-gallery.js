@@ -78,6 +78,7 @@ export default function BackgroundImageGallery() {
     );
   }
 
+
   const {backgroundContextValue, updateBackgroundContextValue} = useContext(BackgroundContext)
   return (
 

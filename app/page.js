@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import styles from './page.module.css'
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Head from 'next/head'
 
 import MasterMind from './games/MasterMind'
@@ -22,7 +22,15 @@ export function test() {
 
 
 export function App() {
-  const [loadedGame, setLoadedGame] = useState(null)
+  let savedBackground
+  let SavedLoadedGame
+  try {
+    savedBackground = localStorage.getItem('Background') || null
+    SavedLoadedGame = (JSON.parse(localStorage.getItem('loadedGame'))) || null
+    SavedLoadedGame = typeof(SavedLoadedGame) == 'number' ? SavedLoadedGame - 1 : null
+  } catch (error) {}
+
+  const [loadedGame, setLoadedGame] = useState(SavedLoadedGame)
   const [backgroundImageSelect, setBackgroundImageSelect] = useState(false)
   const [backgroundContextValue, setBackgroundContextValue] = useState(null)
   const games = [
@@ -31,6 +39,12 @@ export function App() {
     {title: 'Trivia', styleName: 'trivia', game: <Trivia />},
     {title: 'Connect Four', styleName: 'connectFour', game: <ConnectFour />},
   ]
+  useEffect(() => {
+    if(savedBackground != null){
+      setBackgroundContextValue(savedBackground)
+    }
+  },[])
+
 
 
   const updateBackgroundContextValue = (newBackground) => {
@@ -39,7 +53,7 @@ export function App() {
 
 
   const loadGame = (index) => {
-    setLoadedGame(games[index])
+    setLoadedGame(index)
   }
 
 
@@ -73,9 +87,21 @@ export function App() {
       </>
     )
   }
+
+  useEffect(() => {
+    try {
+      if(typeof window !== undefined){
+        localStorage.setItem('Background', backgroundContextValue)
+        //I add 1 then subtract 1 from the number so doesn't parse as null
+        localStorage.setItem('loadedGame', typeof(loadedGame) == 'number' ? loadedGame+1 : null)
+      }
+
+    } catch (error) {}
+  })
+
   return (
     <BackgroundContext.Provider value={{ backgroundContextValue, updateBackgroundContextValue }}>
-
+      <button onClick={() => localStorage.clear()}>Clear local storage</button>
       {backgroundImageSelect ? (
       <div className={styles.center}>
         <button onClick={() => {setLoadedGame(null); setBackgroundImageSelect(false)}} className={styles.backButton}>Home</button>
@@ -87,7 +113,7 @@ export function App() {
       ) : (
       <div className={styles.center}>
         <button onClick={() => {setLoadedGame(null); setBackgroundImageSelect(false)}} className={styles.backButton}>Home</button>
-        {loadedGame.game}
+        {games[loadedGame].game}
       </div> 
       )
       )
