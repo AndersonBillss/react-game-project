@@ -82,7 +82,7 @@ export default function Trivia() {
     const {backgroundContextValue, updateBackgroundContextValue} = useContext(BackgroundContext)
     return(
         <main className={styles.main} style={{
-            backgroundImage: backgroundContextValue === null ? '' : `url(${backgroundContextValue})`
+            backgroundImage: backgroundContextValue === null ? 'none' : `url(${backgroundContextValue})`
           }}>
             <div className={styles.titleContainer}>
                 <h1 className={styles.triviaTitle}>Trivia</h1>

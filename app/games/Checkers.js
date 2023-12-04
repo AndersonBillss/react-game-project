@@ -559,14 +559,16 @@ export default function Checkers(){
     
   useEffect(() => {
     try {
+      if(typeof window !== undefined){
         localStorage.setItem('checkersState', JSON.stringify(state))
+      }
     } catch (error) {}
   })
 
     const {backgroundContextValue, updateBackgroundContextValue} = useContext(BackgroundContext)
     return(
         <main className={styles.main} style={{
-            backgroundImage: backgroundContextValue === null ? '' : `url(${backgroundContextValue})`
+            backgroundImage: backgroundContextValue === null ? 'none' : `url(${backgroundContextValue})`
         }}>
             <div className={styles.center}>
                 <div className={styles.titleContainer}>

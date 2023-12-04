@@ -125,17 +125,19 @@ export default function ConnectFour(){
 
     useEffect(() => {
         try {
-            localStorage.setItem('connectFourBoard', JSON.stringify(board))
-            localStorage.setItem('connectFourTurn', JSON.stringify(turn))
-            localStorage.setItem('connectFourWin', JSON.stringify(win))
-            localStorage.setItem('connectFourWinPieces', JSON.stringify(winPieces))
+            if(typeof window !== undefined){
+                localStorage.setItem('connectFourBoard', JSON.stringify(board))
+                localStorage.setItem('connectFourTurn', JSON.stringify(turn))
+                localStorage.setItem('connectFourWin', JSON.stringify(win))
+                localStorage.setItem('connectFourWinPieces', JSON.stringify(winPieces))
+            }
         } catch (error) {}
       })
 
     const {backgroundContextValue, updateBackgroundContextValue} = useContext(BackgroundContext)
     return(
         <main className={styles.main} style={{
-            backgroundImage: backgroundContextValue === null ? '' : `url(${backgroundContextValue})`
+            backgroundImage: backgroundContextValue === null ? 'none' : `url(${backgroundContextValue})`
           }}>
             <div className={styles.titleContainer}>
                 <h1 className={styles.connectFourTitle}>Connect Four</h1>

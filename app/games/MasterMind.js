@@ -136,17 +136,20 @@ export default function MasterMind() {
 
   useEffect(() => {
     try {
-      localStorage.setItem('masterMindGameBoard', JSON.stringify(board))
-      localStorage.setItem('masterMindSelectedRow', selectedRow)
-      localStorage.setItem('masterMindSecretCode', JSON.stringify(secretCode))
-      localStorage.setItem('masterMindResults', JSON.stringify(results.current))
+      if(typeof window !== undefined){
+        
+        localStorage.setItem('masterMindGameBoard', JSON.stringify(board))
+        localStorage.setItem('masterMindSelectedRow', selectedRow)
+        localStorage.setItem('masterMindSecretCode', JSON.stringify(secretCode))
+        localStorage.setItem('masterMindResults', JSON.stringify(results.current))
+      }
     } catch (error) {}
   })
 
   const {backgroundContextValue, updateBackgroundContextValue} = useContext(BackgroundContext)
   return(
     <main className={styles.main} style={{
-      backgroundImage: backgroundContextValue === null ? '' : `url(${backgroundContextValue})`
+      backgroundImage: backgroundContextValue === null ? 'none' : `url(${backgroundContextValue})`
     }}>
       <div className={styles.titleContainer}>
       <h1 className={styles.MasterMindTitle}>MasterMind</h1>
