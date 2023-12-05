@@ -8,6 +8,7 @@ import MasterMind from './games/MasterMind'
 import Checkers from './games/Checkers'
 import Trivia from './games/Trivia'
 import ConnectFour from './games/ConnectFour'
+import BattleShip from './games/Battleship'
 
 import BackgroundImageGallery from './background-image-gallery'
 import BackgroundContext from './BackgroundContext'
@@ -16,16 +17,30 @@ import BackgroundContext from './BackgroundContext'
 
 export function test() {
   return(
-    <><ConnectFour /></>
+    <><BattleShip /></>
   )
 }
 
 
 export function App() {
 
+  let savedBackground
+  let savedLoadedGame
+  try{
+    savedBackground = localStorage.getItem('background') || null
+    if(savedBackground === 'null' || savedBackground === undefined || savedBackground === 'undefined'){
+      savedBackground = null
+    }
+    savedLoadedGame = JSON.parse(localStorage.getItem('loadedGame')) || null
+    if(typeof(savedLoadedGame) === 'number'){
+      savedLoadedGame = savedLoadedGame-1
+    }
+  } catch (error){}
   
 
-  const [loadedGame, setLoadedGame] = useState(/* SavedLoadedGame */null)
+  
+
+  const [loadedGame, setLoadedGame] = useState(null)
   const [backgroundImageSelect, setBackgroundImageSelect] = useState(false)
   const [backgroundContextValue, setBackgroundContextValue] = useState(null)
   const games = [
@@ -35,6 +50,11 @@ export function App() {
     {title: 'Connect Four', styleName: 'connectFour', game: <ConnectFour />},
   ]
 
+
+  useEffect(() => {
+    setBackgroundContextValue(savedBackground)
+    setLoadedGame(savedLoadedGame)
+  },[])
 
 
 
@@ -79,7 +99,16 @@ export function App() {
     )
   }
 
-
+  useEffect(() => {
+    try {
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('background', backgroundContextValue);
+        localStorage.setItem('loadedGame', loadedGame === null ? null : loadedGame+1);
+      }
+    } catch (error) {
+      console.error('Error setting background in localStorage:', error);
+    }
+  }, [backgroundContextValue, loadedGame]);
 
   return (
     <BackgroundContext.Provider value={{ backgroundContextValue, updateBackgroundContextValue }}>

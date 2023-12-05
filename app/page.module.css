@@ -530,6 +530,7 @@
   padding: 5px 10px;
   border-radius: 15px;
   box-shadow: 0 0 5px 3px rgb(52, 46, 32);
+  color: black;
 }
 .triviaType{
   background-color: beige;
@@ -723,4 +724,53 @@
   .connectFourBoard{
     padding: 2vw;
   }
+}
+
+/* Battleship */
+.battleshipBoard{
+  border: 3px black solid;
+}
+.battleshipCell{
+  width: 50px;
+  height: 50px;
+  background-color: lightgray;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.battleshipCell:hover{
+  filter: brightness(95%);
+  cursor: pointer;
+}
+.battleshipCell:active{
+  filter: brightness(105%);
+}
+.battleshipDot{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.battleshipSelected{
+  background-color: blue;
+}
+.battleshipHit{
+  background-color: red;
+}
+.battleshipMiss{
+  background-color: grey;
+}
+.battleshipFireButton{
+  padding: 5px 10px;
+  margin: 15px;
+  background-color: red;
+  font-weight: bold;
+  font-size: 24px;
+}
+.battleshipFireButton:hover{
+  filter: brightness(95%);
+  cursor: pointer;
+}
+.battleshipFireButton:active{
+  filter: brightness(105%)
 }
